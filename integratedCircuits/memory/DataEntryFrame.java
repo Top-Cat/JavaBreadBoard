@@ -32,7 +32,11 @@ import javax.swing.event.ListSelectionListener;
 import designTools.FileOperations;
 
 public class DataEntryFrame extends JFrame implements ListSelectionListener, ActionListener, FocusListener {
-	private JList addList;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JList<String> addList;
 	private MemSpace data;
 	private Memory access;
 	private ByteTextField[] TextFields = new ByteTextField[256];
@@ -114,7 +118,7 @@ public class DataEntryFrame extends JFrame implements ListSelectionListener, Act
 				addresses[i] = "0".concat(addresses[i]);
 			}
 		}
-		this.addList = new JList(addresses);
+		this.addList = new JList<String>(addresses);
 		this.addList.setSelectedIndex(0);
 		this.addList.setSelectionMode(0);
 		this.addList.addListSelectionListener(this);

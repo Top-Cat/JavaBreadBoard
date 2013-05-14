@@ -3,6 +3,10 @@ package designTools;
 import javax.swing.table.AbstractTableModel;
 
 public class DigitalTableModel extends AbstractTableModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Object[][] cells;
 	private String[] columnNames;
 	private int rowCount;

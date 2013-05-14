@@ -30,6 +30,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 public class CircuitDiagramFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private boolean inApplet = false;
 
 	JScrollPane scrWorkspace = new JScrollPane();
@@ -211,8 +216,8 @@ public class CircuitDiagramFrame extends JFrame {
 		String inputPinList = "";
 		String outputPinList = "";
 
-		ArrayList inList = this.workspace.getInputs();
-		ArrayList outList = this.workspace.getOutputs();
+		ArrayList<CircuitComponent> inList = this.workspace.getInputs();
+		ArrayList<CircuitComponent> outList = this.workspace.getOutputs();
 		int inPinCount = inList.size();
 		int outPinCount = outList.size();
 		File chipFile = null;
@@ -258,11 +263,11 @@ public class CircuitDiagramFrame extends JFrame {
 			}
 			writer.println("Clocked Chip=False");
 			for (int i = 0; i < inPinCount; i++) {
-				inputPinList = inputPinList + ((CircuitComponent) inList.get(i)).getText() + ";";
+				inputPinList = inputPinList + inList.get(i).getText() + ";";
 			}
 			writer.println("Input Pins=" + inputPinList);
 			for (int i = 0; i < outPinCount; i++) {
-				outputPinList = outputPinList + ((CircuitComponent) outList.get(i)).getText() + ";";
+				outputPinList = outputPinList + outList.get(i).getText() + ";";
 			}
 			writer.println("Output Pins=" + outputPinList);
 			writer.println("Number of States=1");
@@ -276,7 +281,7 @@ public class CircuitDiagramFrame extends JFrame {
 				strCombination = this.fillWithZeros(strCombination, inPinCount);
 
 				for (int j = 0; j < inPinCount; j++) {
-					CircuitComponent inputPin = (CircuitComponent) this.workspace.getInputs().get(j);
+					CircuitComponent inputPin = this.workspace.getInputs().get(j);
 					boolean state;
 					if (strCombination.charAt(j) == '1') {
 						state = true;
@@ -288,7 +293,7 @@ public class CircuitDiagramFrame extends JFrame {
 				String outputString = "";
 
 				for (int j = 0; j < outPinCount; j++) {
-					CircuitComponent comp = (CircuitComponent) this.workspace.getOutputs().get(j);
+					CircuitComponent comp = this.workspace.getOutputs().get(j);
 					boolean state = comp.simulate();
 					if (state) {
 						outputString = outputString + '1';

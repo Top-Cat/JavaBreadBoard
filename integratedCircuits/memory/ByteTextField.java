@@ -11,6 +11,10 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
 public class ByteTextField extends JTextField {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Toolkit toolkit;
 	private NumberFormat ByteFormat;
 	private ByteNumberDocument ByteNumDoc;
@@ -38,6 +42,10 @@ public class ByteTextField extends JTextField {
 	}
 
 	protected class ByteNumberDocument extends PlainDocument {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private String type = "Hex";
 
 		protected ByteNumberDocument() {}

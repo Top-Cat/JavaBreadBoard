@@ -19,7 +19,7 @@ public class LogicTableElement {
 	protected void initialise(int size, int data, int delay) {
 		this.size = size;
 		this.delay = delay;
-		this.dataBits = new ArrayList(size);
+		this.dataBits = new ArrayList<Boolean>(size);
 
 		for (int i = 0; i < size; i++) {
 			this.dataBits.add(Boolean.FALSE);

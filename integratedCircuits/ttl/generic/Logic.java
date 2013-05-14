@@ -32,8 +32,8 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 	private int numberOfPins = 0;
 
 	private Boolean chipWide = Boolean.valueOf(false);
-	private List<String> chipInputs = new ArrayList();
-	private List<String> chipOutputs = new ArrayList();
+	private List<String> chipInputs = new ArrayList<String>();
+	private List<String> chipOutputs = new ArrayList<String>();
 	private List<LogicTableElement> lookUpTable;
 	private Boolean mode = Boolean.valueOf(true);
 	private int lookUpTableRows = 0;
@@ -152,7 +152,7 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 			}
 			this.numberOfAddressBits = this.chipInputs.size();
 			this.numberOfDataBits = this.chipOutputs.size();
-			this.lookUpTable = new ArrayList((int) Math.pow(2.0D, this.numberOfAddressBits));
+			this.lookUpTable = new ArrayList<LogicTableElement>((int) Math.pow(2.0D, this.numberOfAddressBits));
 
 			for (int i = 0; i < (int) Math.pow(2.0D, this.numberOfAddressBits); i++) {
 				this.lookUpTable.add(new LogicTableElement(this.numberOfDataBits, 10));
@@ -254,7 +254,7 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 			offset *= 2;
 		}
 
-		List data = this.lookUpTable.get(address).getData();
+		List<Boolean> data = this.lookUpTable.get(address).getData();
 		int delay = this.lookUpTable.get(address).getDelay();
 
 		for (int i = 0; i < this.chipOutputs.size(); i++) {

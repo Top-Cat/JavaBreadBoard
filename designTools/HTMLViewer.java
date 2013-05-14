@@ -17,12 +17,16 @@ import javax.swing.JScrollPane;
 import javax.swing.event.HyperlinkEvent;
 
 public class HTMLViewer extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JScrollPane scrollPane = new JScrollPane();
 	JEditorPane htmlPane = new JEditorPane();
 	JButton cmdClose = new JButton();
 	JButton cmdBack = new JButton();
 
-	private Stack pageStack = new Stack();
+	private Stack<String> pageStack = new Stack<String>();
 	GridBagLayout gridBagLayout1 = new GridBagLayout();
 
 	public HTMLViewer(URL page, String title) {

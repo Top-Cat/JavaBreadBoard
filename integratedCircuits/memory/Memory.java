@@ -77,31 +77,27 @@ public abstract class Memory extends IntegratedCircuit implements ChipModel, Dbl
 			try {
 				System.out.println("Open File " + newFilename);
 				FileInputStream istream = new FileInputStream(newFilename);
-				if (istream == null) {
-					System.out.println("Invalid File");
-				} else {
-					Scanner fileScanner = new Scanner(istream);
+				Scanner fileScanner = new Scanner(istream);
 
-					while (fileScanner.hasNextLine()) {
-						String line = fileScanner.nextLine();
+				while (fileScanner.hasNextLine()) {
+					String line = fileScanner.nextLine();
 
-						Scanner lineScanner = new Scanner(line);
-						try {
-							if (lineScanner.hasNext(Pattern.compile("^[0123456789].*"))) {
-								lineScanner.useDelimiter(",");
-								int count = 0;
-								int data = 0;
-								while (lineScanner.hasNext()) {
-									String value = lineScanner.next();
-									if (value != null) {
-										data = Integer.valueOf(value).intValue();
-										this.memory.setDatum(count, data);
-										count++;
-									}
+					Scanner lineScanner = new Scanner(line);
+					try {
+						if (lineScanner.hasNext(Pattern.compile("^[0123456789].*"))) {
+							lineScanner.useDelimiter(",");
+							int count = 0;
+							int data = 0;
+							while (lineScanner.hasNext()) {
+								String value = lineScanner.next();
+								if (value != null) {
+									data = Integer.valueOf(value).intValue();
+									this.memory.setDatum(count, data);
+									count++;
 								}
 							}
-						} catch (NoSuchElementException e1) {
 						}
+					} catch (NoSuchElementException e1) {
 					}
 				}
 			} catch (FileNotFoundException e1) {

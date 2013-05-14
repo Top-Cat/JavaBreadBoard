@@ -12,6 +12,10 @@ import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 
 public class Circuit extends JLayeredPane {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JBreadBoard jBreadBoard = null;
 	private JBreadBoardEventSimulation simulation = new JBreadBoardEventSimulation(this);
 	private Trace trace = new Trace(this);
@@ -192,14 +196,11 @@ public class Circuit extends JLayeredPane {
 			if (component2 instanceof Board) {
 				Board board = (Board) component2;
 
-				Iterator iterator = board.wires.iterator();
+				Iterator<Wire> iterator = board.wires.iterator();
 
 				while (iterator.hasNext()) {
-					Object obj = iterator.next();
-					if (obj instanceof Wire) {
-						Wire wire = (Wire) obj;
-						string = string + "\n" + wire.toString();
-					}
+					Wire wire = iterator.next();
+					string = string + "\n" + wire.toString();
 				}
 			}
 		}

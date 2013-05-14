@@ -7,6 +7,10 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public class BreadBoard extends Board {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ImageIcon graphic;
 	private Node[] nodes = new Node[550];
 

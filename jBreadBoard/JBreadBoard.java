@@ -36,6 +36,10 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
 public class JBreadBoard extends JApplet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame jframe;
 	private Circuit circuit = new Circuit(this);
 	private JLabel statusbar = new JLabel(" ");

@@ -10,6 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class KeyPad extends JPanel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int Value = 0;
 	private ChipModel chipModel;
 

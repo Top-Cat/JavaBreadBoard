@@ -12,10 +12,14 @@ import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 
 public abstract class Board extends JComponent implements CircuitSelection {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Circuit circuit;
-	public LinkedList wires = new LinkedList();
+	public LinkedList<Wire> wires = new LinkedList<Wire>();
 
-	public LinkedList interwires = new LinkedList();
+	public LinkedList<Wire> interwires = new LinkedList<Wire>();
 
 	public Board(Circuit c) {
 		this.circuit = c;
@@ -130,7 +134,7 @@ public abstract class Board extends JComponent implements CircuitSelection {
 			if (Board.this.getCircuit().getJBreadBoard().getMode().equals("move")) {
 				Circuit circuit = this.board.getCircuit();
 
-				Vector boards = new Vector();
+				Vector<Board> boards = new Vector<Board>();
 				int boardsIndex = 0;
 
 				boards.add(this.board);

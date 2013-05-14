@@ -13,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class CircuitComponent extends JLabel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static final int COMPONENT_COUNT = 8;
 	static final int AND = 0;
 	static final int OR = 1;
@@ -29,7 +33,7 @@ public class CircuitComponent extends JLabel {
 	private Point[][][] pinOffsets = { { { new Point(0, 20), new Point(0, 40) }, { new Point(60, 30) } }, { { new Point(0, 20), new Point(0, 40) }, { new Point(60, 30) } }, { { new Point(0, 20) }, { new Point(60, 20) } }, { new Point[0], { new Point(60, 20) } }, { { new Point(0, 20) }, new Point[0] }, { new Point[0], { new Point(40, 20) } }, { new Point[0], { new Point(40, 20) } }, { new Point[0], new Point[0] } };
 	private int ctype;
 	private BufferedImage image;
-	private ArrayList inList = new ArrayList();
+	private ArrayList<CircuitComponent> inList = new ArrayList<CircuitComponent>();
 	private boolean state = false;
 
 	public CircuitComponent(int type) {
@@ -151,7 +155,7 @@ public class CircuitComponent extends JLabel {
 		}
 	}
 
-	public ArrayList getConnectedInputs() {
+	public ArrayList<CircuitComponent> getConnectedInputs() {
 		return this.inList;
 	}
 
@@ -223,11 +227,11 @@ public class CircuitComponent extends JLabel {
 			returnValue = true;
 		} else {
 			if (this.inList.size() == 1) {
-				returnValue = ((CircuitComponent) this.inList.get(0)).simulate();
+				returnValue = this.inList.get(0).simulate();
 			} else {
 				System.out.println("Warning: Multiple wires connected to the output pin.\nOnly simulating first connection. Do not connect outputs");
 
-				returnValue = ((CircuitComponent) this.inList.get(0)).simulate();
+				returnValue = this.inList.get(0).simulate();
 			}
 		}
 		return returnValue;
@@ -239,14 +243,14 @@ public class CircuitComponent extends JLabel {
 			returnValue = true;
 		} else {
 			if (this.inList.size() == 1) {
-				returnValue = true & ((CircuitComponent) this.inList.get(0)).simulate();
+				returnValue = true & this.inList.get(0).simulate();
 			} else {
 				if (this.inList.size() == 2) {
-					returnValue = ((CircuitComponent) this.inList.get(0)).simulate() & ((CircuitComponent) this.inList.get(1)).simulate();
+					returnValue = this.inList.get(0).simulate() & this.inList.get(1).simulate();
 				} else {
 					System.out.println("Warning: Too many input connections found to AND gate.\nOnly simulating first two connections. Do not connect outputs");
 
-					returnValue = ((CircuitComponent) this.inList.get(0)).simulate() & ((CircuitComponent) this.inList.get(1)).simulate();
+					returnValue = this.inList.get(0).simulate() & this.inList.get(1).simulate();
 				}
 			}
 		}
@@ -259,11 +263,11 @@ public class CircuitComponent extends JLabel {
 			returnValue = true;
 		} else {
 			if (this.inList.size() == 2) {
-				returnValue = ((CircuitComponent) this.inList.get(0)).simulate() | ((CircuitComponent) this.inList.get(1)).simulate();
+				returnValue = this.inList.get(0).simulate() | this.inList.get(1).simulate();
 			} else {
 				System.out.println("Warning: Too many input connections found to OR gate.\nOnly simulating first two connections. Do not connect outputs");
 
-				returnValue = ((CircuitComponent) this.inList.get(0)).simulate() | ((CircuitComponent) this.inList.get(1)).simulate();
+				returnValue = this.inList.get(0).simulate() | this.inList.get(1).simulate();
 			}
 		}
 		return returnValue;
@@ -275,11 +279,11 @@ public class CircuitComponent extends JLabel {
 			returnValue = false;
 		} else {
 			if (this.inList.size() == 1) {
-				returnValue = !((CircuitComponent) this.inList.get(0)).simulate();
+				returnValue = !this.inList.get(0).simulate();
 			} else {
 				System.out.println("Warning: Multiple wires connected to the NOT gate.\nOnly simulating first connection. Do not connect outputs");
 
-				returnValue = !((CircuitComponent) this.inList.get(0)).simulate();
+				returnValue = !this.inList.get(0).simulate();
 			}
 		}
 		return returnValue;

@@ -37,9 +37,9 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 	private int nextState = 0;
 
 	private Boolean chipWide = Boolean.valueOf(false);
-	private List<String> chipInputs = new ArrayList();
-	private List<String> chipOutputs = new ArrayList();
-	private List<List> stateTable;
+	private List<String> chipInputs = new ArrayList<String>();
+	private List<String> chipOutputs = new ArrayList<String>();
+	private List<List<StateTableElement>> stateTable;
 	private Boolean mode = Boolean.valueOf(true);
 	private int lookUpTableRows = 0;
 	private int pinOffset = 0;
@@ -88,14 +88,16 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 
 	private void initialise() throws InvalidStateException {
 		String newFilename = this.updateConfigFilePath(this.chipFilename);
+		Scanner fileScanner = null;
+		Scanner lineScanner = null;
 		try {
 			FileInputStream istream = new FileInputStream(newFilename);
-			Scanner fileScanner = new Scanner(istream);
+			fileScanner = new Scanner(istream);
 
 			while (this.mode.booleanValue() && fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 
-				Scanner lineScanner = new Scanner(line);
+				lineScanner = new Scanner(line);
 				lineScanner.useDelimiter("=");
 
 				if (lineScanner.findInLine("Chip Text=") != null) {
@@ -165,16 +167,17 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 						}
 					}
 				}
+				lineScanner.close();
 			}
 			if (this.mode.booleanValue()) {
 				throw new InvalidStateException("No Initial State detected exit");
 			}
 			this.numberOfAddressBits = this.chipInputs.size();
 			this.numberOfDataBits = this.chipOutputs.size();
-			this.stateTable = new ArrayList(this.numberOfStates);
+			this.stateTable = new ArrayList<List<StateTableElement>>(this.numberOfStates);
 
 			for (int j = 0; j < this.numberOfStates; j++) {
-				this.stateTable.add(new ArrayList((int) Math.pow(2.0D, this.numberOfAddressBits)));
+				this.stateTable.add(new ArrayList<StateTableElement>((int) Math.pow(2.0D, this.numberOfAddressBits)));
 				for (int i = 0; i < (int) Math.pow(2.0D, this.numberOfAddressBits); i++) {
 					this.stateTable.get(j).add(new StateTableElement(this.numberOfDataBits, 10));
 				}
@@ -183,7 +186,7 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 			while (!this.mode.booleanValue() && fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 
-				Scanner lineScanner = new Scanner(line);
+				lineScanner = new Scanner(line);
 				try {
 					if (lineScanner.hasNext(Pattern.compile("^[01].*"))) {
 						lineScanner.useDelimiter(";");
@@ -193,14 +196,16 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 						int nextState = Integer.parseInt(lineScanner.next(), 10);
 						int delay = Integer.parseInt(lineScanner.next(), 10);
 
-						((StateTableElement) this.stateTable.get(presentState).get(address)).setData(data);
-						((StateTableElement) this.stateTable.get(presentState).get(address)).setDelay(delay);
-						((StateTableElement) this.stateTable.get(presentState).get(address)).setState(nextState);
+						this.stateTable.get(presentState).get(address).setData(data);
+						this.stateTable.get(presentState).get(address).setDelay(delay);
+						this.stateTable.get(presentState).get(address).setState(nextState);
 
 						this.lookUpTableRows += 1;
 					}
 
 				} catch (NoSuchElementException e1) {
+				} finally {
+					lineScanner.close();
 				}
 
 			}
@@ -208,6 +213,13 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 		} catch (FileNotFoundException e1) {
 			System.out.print(e1);
 			throw new InvalidStateException("No File found exit");
+		} finally {
+			if (fileScanner != null) {
+				fileScanner.close();
+			}
+			if (lineScanner != null) {
+				lineScanner.close();
+			}
 		}
 
 		if (this.lookUpTableRows == 0) {
@@ -289,13 +301,13 @@ public class StateMachine extends IntegratedCircuit implements LoadSave {
 			if (this.isHigh("CLR")) {
 				this.presentState = this.initialState;
 			}
-			this.nextState = ((StateTableElement) this.stateTable.get(this.presentState).get(address)).getState();
+			this.nextState = this.stateTable.get(this.presentState).get(address).getState();
 
-			List data = ((StateTableElement) this.stateTable.get(this.presentState).get(address)).getData();
-			int delay = ((StateTableElement) this.stateTable.get(this.presentState).get(address)).getDelay();
+			List<Boolean> data = this.stateTable.get(this.presentState).get(address).getData();
+			int delay = this.stateTable.get(this.presentState).get(address).getDelay();
 
 			for (int i = 0; i < this.chipOutputs.size(); i++) {
-				if (((Boolean) data.get(i)).booleanValue()) {
+				if (data.get(i).booleanValue()) {
 					this.setPin(this.chipOutputs.get(i), Pin.PinState.HIGH, delay);
 				} else {
 					this.setPin(this.chipOutputs.get(i), Pin.PinState.LOW, delay);

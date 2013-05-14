@@ -14,6 +14,10 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class StateTable extends JTable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private DigitalTableModel stateTableModel;
 	private int stateCount;
 	private int inPinCount;
@@ -57,7 +61,7 @@ public class StateTable extends JTable {
 	}
 
 	protected void renderCells() {
-		JComboBox stateSelector = new JComboBox();
+		JComboBox<String> stateSelector = new JComboBox<String>();
 		for (int i = 0; i < this.stateCount; i++) {
 			stateSelector.addItem(String.valueOf(i));
 		}

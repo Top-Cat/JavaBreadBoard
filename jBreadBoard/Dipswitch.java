@@ -12,6 +12,10 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 public class Dipswitch extends JComponent implements Device, CircuitSelection {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int pins = 3;
 	private boolean[] states;
 	private Node[] topnode;

@@ -38,7 +38,7 @@ public class MemSpace {
 	}
 
 	public String getAll() {
-		Vector truthTable = new Vector();
+		Vector<String> truthTable = new Vector<String>();
 		for (int i = 0; i < this.length; i++) {
 			truthTable.add(Integer.valueOf(this.getDatum(i)).toString());
 		}

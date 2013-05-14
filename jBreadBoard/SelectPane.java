@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class SelectPane extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JBreadBoard jBreadBoard;
 	private CircuitSelection selection;
 	private ImageIcon imageicon;
@@ -51,6 +55,11 @@ public class SelectPane extends JPanel {
 		this.imagepanel.setBackground(Color.white);
 
 		JComponent c = new JComponent() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);

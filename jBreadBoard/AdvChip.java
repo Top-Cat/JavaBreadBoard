@@ -15,8 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class AdvChip {
-	public static String[] getInterfaces(Class chipModel) {
-		Class[] interfaces = chipModel.getInterfaces();
+	public static String[] getInterfaces(Class<? extends ChipModel> chipModel) {
+		Class<?>[] interfaces = chipModel.getInterfaces();
 		String[] retVal = new String[interfaces.length];
 
 		for (int i = 0; i < interfaces.length; i++) {

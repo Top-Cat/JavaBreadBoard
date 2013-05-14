@@ -12,6 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class DesignTools extends JApplet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean inApplet = false;
 
 	public static void main(String[] args) {

@@ -15,14 +15,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class Workspace extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private CircuitComponent movingComponent = null;
 	private static final int GRID_SIZE = 10;
 	private JScrollPane parentPane;
 	private boolean wiringMode = false;
 	private boolean drawingWire = false;
-	private ArrayList wireList = new ArrayList();
-	private ArrayList outputPinList = new ArrayList();
-	private ArrayList inputPinList = new ArrayList();
+	private ArrayList<Wire> wireList = new ArrayList<Wire>();
+	private ArrayList<CircuitComponent> outputPinList = new ArrayList<CircuitComponent>();
+	private ArrayList<CircuitComponent> inputPinList = new ArrayList<CircuitComponent>();
 	private CircuitComponent selectedCircuitComponent;
 	private JLabel lblStatus;
 	private Color wireColor = Color.BLACK;
@@ -51,7 +55,7 @@ public class Workspace extends JPanel {
 			}
 		}
 		for (int i = 0; i < this.wireList.size(); i++) {
-			((Wire) this.wireList.get(i)).draw(g2);
+			this.wireList.get(i).draw(g2);
 		}
 	}
 
@@ -99,7 +103,7 @@ public class Workspace extends JPanel {
 			this.movingComponent.setLocation(gridPos);
 			this.repaint();
 		} else if (this.drawingWire) {
-			((Wire) this.wireList.get(this.wireList.size() - 1)).sketchLineTo(gridPos);
+			this.wireList.get(this.wireList.size() - 1).sketchLineTo(gridPos);
 			this.repaint();
 		}
 	}
@@ -137,15 +141,15 @@ public class Workspace extends JPanel {
 			} else if (this.wiringMode) {
 				this.showWiringModeText();
 				if (this.drawingWire) {
-					((Wire) this.wireList.get(this.wireList.size() - 1)).lineTo(gridPos);
+					this.wireList.get(this.wireList.size() - 1).lineTo(gridPos);
 					if (e.getClickCount() > 1) {
 						this.drawingWire = false;
-						((Wire) this.wireList.get(this.wireList.size() - 1)).connect(gridPos);
+						this.wireList.get(this.wireList.size() - 1).connect(gridPos);
 					}
 				} else {
 					this.drawingWire = true;
 					this.wireList.add(new Wire(gridPos, this.wireColor, this));
-					((Wire) this.wireList.get(this.wireList.size() - 1)).connect(gridPos);
+					this.wireList.get(this.wireList.size() - 1).connect(gridPos);
 				}
 
 			} else if (this.getComponentAt(e.getPoint()).getClass().equals(new CircuitComponent(0).getClass())) {
@@ -153,9 +157,9 @@ public class Workspace extends JPanel {
 				this.selectedCircuitComponent.setSelected(true);
 			} else {
 				for (int i = 0; i < this.wireList.size(); i++) {
-					if (((Wire) this.wireList.get(i)).isWirePoint(gridPos)) {
+					if (this.wireList.get(i).isWirePoint(gridPos)) {
 						this.selectedWireIndex = i;
-						((Wire) this.wireList.get(i)).setSelected(true);
+						this.wireList.get(i).setSelected(true);
 						i = this.wireList.size();
 					}
 				}
@@ -194,7 +198,7 @@ public class Workspace extends JPanel {
 		}
 		this.selectedCircuitComponent = null;
 		if (this.selectedWireIndex != -1) {
-			((Wire) this.wireList.get(this.selectedWireIndex)).setSelected(false);
+			this.wireList.get(this.selectedWireIndex).setSelected(false);
 		}
 		this.selectedWireIndex = -1;
 	}
@@ -235,8 +239,8 @@ public class Workspace extends JPanel {
 
 	public void disconnectComponent(CircuitComponent comp) {
 		for (int i = this.wireList.size() - 1; i >= 0; i--) {
-			if (i < this.wireList.size() && ((Wire) this.wireList.get(i)).disconnect(comp)) {
-				((Wire) this.wireList.get(i)).removeWire();
+			if (i < this.wireList.size() && this.wireList.get(i).disconnect(comp)) {
+				this.wireList.get(i).removeWire();
 			}
 
 			this.repaint();
@@ -247,15 +251,15 @@ public class Workspace extends JPanel {
 		return 10;
 	}
 
-	public ArrayList getOutputs() {
+	public ArrayList<CircuitComponent> getOutputs() {
 		return this.outputPinList;
 	}
 
-	public ArrayList getInputs() {
+	public ArrayList<CircuitComponent> getInputs() {
 		return this.inputPinList;
 	}
 
-	public ArrayList getWires() {
+	public ArrayList<Wire> getWires() {
 		return this.wireList;
 	}
 
@@ -272,7 +276,7 @@ public class Workspace extends JPanel {
 			this.unselectComponent();
 			this.repaint();
 		} else if (this.selectedWireIndex > -1) {
-			((Wire) this.wireList.get(this.selectedWireIndex)).removeWire();
+			this.wireList.get(this.selectedWireIndex).removeWire();
 			this.selectedWireIndex = -1;
 			this.repaint();
 		}
@@ -307,7 +311,7 @@ public class Workspace extends JPanel {
 
 	public void cancelWireSegment() {
 		if (this.drawingWire) {
-			Wire lastWire = (Wire) this.wireList.get(this.wireList.size() - 1);
+			Wire lastWire = this.wireList.get(this.wireList.size() - 1);
 			lastWire.removeLastPoint();
 			if (lastWire.getPointCount() < 2) {
 				this.wireList.remove(lastWire);

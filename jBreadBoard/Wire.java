@@ -10,6 +10,10 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 public class Wire extends JComponent implements CircuitSelection {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Boolean locset = Boolean.valueOf(false);
 	private int xloc;
 	private int yloc;

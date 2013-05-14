@@ -42,18 +42,22 @@ import javax.swing.event.ListSelectionListener;
 import designTools.FileOperations;
 
 public class ChipSelector extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static String defaultchip = "integratedCircuits.ttl.logic.Gen7400";
 	private JBreadBoard jBreadBoard;
-	private JList componentList = new JList();
+	private JList<String> componentList = new JList<String>();
 	private JLabel chipname = new JLabel();
 	private JTextArea chipdescription = new JTextArea();
 	private JLabel chipmanufacturer = new JLabel();
-	private JComboBox chipderivatives = new JComboBox();
+	private JComboBox<String> chipderivatives = new JComboBox<String>();
 	private ImageIcon chipdiagram;
 	private String defaultDirectory = "integratedCircuits";
 	private String currentDirectory = "integratedCircuits";
 
-	private Hashtable directoryClasses = new Hashtable();
+	private Hashtable<String, ClassRecord> directoryClasses = new Hashtable<String, ClassRecord>();
 
 	private char fileSeparatorChar = File.separatorChar;
 	private String fileSeparatorString = File.separator;
@@ -62,6 +66,11 @@ public class ChipSelector extends JPanel {
 	private String urlSeparatorString = "/";
 
 	private JPanel imagepanel = new JPanel() {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -140,10 +149,10 @@ public class ChipSelector extends JPanel {
 	}
 
 	private void refreshDirectoryList(Direction direction, String selectedDirectory) {
-		Vector listNames = new Vector();
-		Vector directoryNames = new Vector();
-		Vector fileNames = new Vector();
-		Vector classNames = new Vector();
+		Vector<String> listNames = new Vector<String>();
+		Vector<String> directoryNames = new Vector<String>();
+		Vector<String> fileNames = new Vector<String>();
+		Vector<String> classNames = new Vector<String>();
 
 		this.directoryClasses.clear();
 		URL url;
@@ -190,7 +199,7 @@ public class ChipSelector extends JPanel {
 				}
 			}
 		} catch (NullPointerException e1) {
-			String selectedItem = (String) this.componentList.getSelectedValue();
+			String selectedItem = this.componentList.getSelectedValue();
 			System.out.println("Directory does not exist : " + selectedItem);
 		}
 
@@ -224,7 +233,7 @@ public class ChipSelector extends JPanel {
 			for (int i = 0; i < fileNames.size(); i++) {
 				String key = fileNames.get(i).toString().substring(fileNames.get(i).toString().lastIndexOf('.') + 1);
 				try {
-					this.directoryClasses.put(key, new ClassRecord(Class.forName((String) fileNames.get(i))));
+					this.directoryClasses.put(key, new ClassRecord(Class.forName(fileNames.get(i))));
 				} catch (ClassNotFoundException e1) {
 					System.out.println("ClassNotFoundException Error ");
 				}
@@ -232,18 +241,18 @@ public class ChipSelector extends JPanel {
 
 			for (int i = 0; i < fileNames.size(); i++) {
 				try {
-					Class c = Class.forName((String) fileNames.get(i));
+					Class<?> c = Class.forName(fileNames.get(i));
 
 					for (int j = 0; j < fileNames.size(); j++) {
 						try {
-							Object o = Class.forName((String) fileNames.get(j)).newInstance();
+							Object o = Class.forName(fileNames.get(j)).newInstance();
 
 							if (c.isInstance(o)) {
 								String classKey = fileNames.get(i).toString().substring(fileNames.get(i).toString().lastIndexOf('.') + 1);
 								String objectKey = fileNames.get(j).toString().substring(fileNames.get(j).toString().lastIndexOf('.') + 1);
 
-								((ClassRecord) this.directoryClasses.get(classKey)).addClass(o.getClass());
-								((ClassRecord) this.directoryClasses.get(objectKey)).incReferencedCount();
+								this.directoryClasses.get(classKey).addClass(o.getClass());
+								this.directoryClasses.get(objectKey).incReferencedCount();
 							}
 
 						} catch (InstantiationException e1) {
@@ -256,11 +265,11 @@ public class ChipSelector extends JPanel {
 					System.out.println("ClassNotFoundException Error " + e1);
 				}
 			}
-			Enumeration keys = this.directoryClasses.keys();
+			Enumeration<String> keys = this.directoryClasses.keys();
 
 			while (keys.hasMoreElements()) {
-				String key = (String) keys.nextElement();
-				ClassRecord classSet = (ClassRecord) this.directoryClasses.get(key);
+				String key = keys.nextElement();
+				ClassRecord classSet = this.directoryClasses.get(key);
 
 				if (classSet.getReferencedCount() == 1) {
 					classNames.add(key);
@@ -292,7 +301,7 @@ public class ChipSelector extends JPanel {
 	private void updateSelectedChip(String selectedItem) {
 		try {
 			if (!selectedItem.isEmpty()) {
-				ClassRecord classSet = (ClassRecord) this.directoryClasses.get(selectedItem);
+				ClassRecord classSet = this.directoryClasses.get(selectedItem);
 
 				String className = classSet.getBaseClass().toString().substring(classSet.getBaseClass().toString().lastIndexOf(' ') + 1);
 
@@ -455,7 +464,7 @@ public class ChipSelector extends JPanel {
 			int numberOfClicks = e.getClickCount();
 			int buttonClicked = e.getButton();
 
-			String selectedItem = (String) ChipSelector.this.componentList.getSelectedValue();
+			String selectedItem = ChipSelector.this.componentList.getSelectedValue();
 
 			if (numberOfClicks == 1 && buttonClicked == 1) {
 				ChipSelector.this.updateSelectedChip(selectedItem);
@@ -488,7 +497,7 @@ public class ChipSelector extends JPanel {
 
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
-			String selectedItem = (String) ChipSelector.this.componentList.getSelectedValue();
+			String selectedItem = ChipSelector.this.componentList.getSelectedValue();
 
 			ChipSelector.this.updateSelectedChip(selectedItem);
 		}
@@ -499,11 +508,12 @@ public class ChipSelector extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JComboBox cb = (JComboBox) e.getSource();
+			@SuppressWarnings("unchecked")
+			JComboBox<String> cb = (JComboBox<String>) e.getSource();
 			String name = (String) cb.getSelectedItem();
 
 			if (name != null) {
-				ChipSelector.ClassRecord classSet = (ChipSelector.ClassRecord) ChipSelector.this.directoryClasses.get(name);
+				ChipSelector.ClassRecord classSet = ChipSelector.this.directoryClasses.get(name);
 				String className = classSet.getBaseClass().toString().substring(classSet.getBaseClass().toString().lastIndexOf(' ') + 1);
 				try {
 					Class.forName(className).newInstance();
@@ -525,7 +535,7 @@ public class ChipSelector extends JPanel {
 		private Class baseClass;
 
 		ClassRecord(Class base) {
-			this.implementsClass = new HashSet();
+			this.implementsClass = new HashSet<Class>();
 			this.referencedCount = 0;
 			this.baseClass = base;
 		}

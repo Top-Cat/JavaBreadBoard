@@ -2,7 +2,11 @@ package designTools;
 
 import java.util.ArrayList;
 
-public class ConnectedWires extends ArrayList {
+public class ConnectedWires extends ArrayList<Wire> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private CircuitComponent sourceComponent;
 
 	public void setSourceComponent(CircuitComponent component) {

@@ -13,6 +13,10 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 public class Probe extends JComponent implements Device, CircuitSelection {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static int next = 0;
 	private Circuit circuit;
 	private Trace trace;

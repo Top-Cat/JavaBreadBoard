@@ -10,12 +10,12 @@ import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 
 public class Wire {
-	private ArrayList pointList = new ArrayList();
+	private ArrayList<Point> pointList = new ArrayList<Point>();
 	private Point sketchPoint;
 	private CircuitComponent sourceComponent = null;
 	private CircuitComponent targetComponent = null;
 	private Workspace workSpace;
-	private ArrayList nodeList = new ArrayList();
+	private ArrayList<Point> nodeList = new ArrayList<Point>();
 	private Color wireColor;
 	private boolean isSelected;
 	private ConnectedWires connectedWires = new ConnectedWires();
@@ -43,8 +43,8 @@ public class Wire {
 					this.connectedWires.setSourceComponent(circuitComp);
 
 					for (int i = 0; i < this.connectedWires.size(); i++) {
-						if (((Wire) this.connectedWires.get(i)).targetComponent != null) {
-							((Wire) this.connectedWires.get(i)).targetComponent.connectInput(this.sourceComponent);
+						if (this.connectedWires.get(i).targetComponent != null) {
+							this.connectedWires.get(i).targetComponent.connectInput(this.sourceComponent);
 						}
 					}
 				}
@@ -59,7 +59,7 @@ public class Wire {
 				if (point.equals(circuitComp.getInputLocations()[i])) {
 					boolean alreadyConnected = false;
 					for (int j = 0; j < this.workSpace.getWires().size() - 1; j++) {
-						if (((Wire) this.workSpace.getWires().get(j)).isWirePoint(point)) {
+						if (this.workSpace.getWires().get(j).isWirePoint(point)) {
 							alreadyConnected = true;
 						}
 					}
@@ -83,17 +83,17 @@ public class Wire {
 			}
 
 		} else {
-			ArrayList wireList = this.workSpace.getWires();
+			ArrayList<Wire> wireList = this.workSpace.getWires();
 
 			for (int i = 0; i < wireList.size() - 1; i++) {
-				Wire wire = (Wire) wireList.get(i);
+				Wire wire = wireList.get(i);
 				if (wire.isWirePoint(point)) {
 					if (wire.getConnectedWires().getSourceComponent() != null && this.connectedWires.getSourceComponent() != null && !wire.getConnectedWires().getSourceComponent().equals(this.connectedWires.getSourceComponent())) {
 						this.workSpace.getWires().remove(this.workSpace.getWires().size() - 1);
 						this.showErrorMessage();
 					} else {
 						for (int j = 0; j < this.connectedWires.size(); j++) {
-							wire.getConnectedWires().addExclusive((Wire) this.connectedWires.get(j));
+							wire.getConnectedWires().addExclusive(this.connectedWires.get(j));
 						}
 
 						this.connectedWires = wire.getConnectedWires();
@@ -104,7 +104,7 @@ public class Wire {
 
 						if (this.connectedWires.getSourceComponent() != null) {
 							for (int j = 0; j < this.connectedWires.size(); j++) {
-								Wire w = (Wire) this.connectedWires.get(j);
+								Wire w = this.connectedWires.get(j);
 								if (w.targetComponent != null) {
 									boolean needToUpdate = true;
 									for (int k = 0; k < w.targetComponent.getConnectedInputs().size(); k++) {
@@ -144,7 +144,7 @@ public class Wire {
 	}
 
 	private Point toHorizontalOrVertical(Point mousePoint) {
-		Point previousPoint = (Point) this.pointList.get(this.pointList.size() - 1);
+		Point previousPoint = this.pointList.get(this.pointList.size() - 1);
 
 		double xlength = mousePoint.getX() - previousPoint.getX();
 		double ylength = mousePoint.getY() - previousPoint.getY();
@@ -171,7 +171,7 @@ public class Wire {
 		if (this.pointList.size() > 1) {
 			this.pointList.remove(this.pointList.size() - 1);
 		}
-		this.sketchPoint = (Point) this.pointList.get(this.pointList.size() - 1);
+		this.sketchPoint = this.pointList.get(this.pointList.size() - 1);
 	}
 
 	public void setSelected(boolean selected) {
@@ -186,8 +186,8 @@ public class Wire {
 		boolean isOnWire = false;
 
 		for (int i = 0; i < this.pointList.size() - 1; i++) {
-			Point currentPoint = (Point) this.pointList.get(i);
-			Point nextPoint = (Point) this.pointList.get(i + 1);
+			Point currentPoint = this.pointList.get(i);
+			Point nextPoint = this.pointList.get(i + 1);
 
 			if (currentPoint.getX() == point.getX()) {
 				if (nextPoint.getY() >= currentPoint.getY() && nextPoint.getY() >= point.getY() && point.getY() >= currentPoint.getY()) {
@@ -218,9 +218,9 @@ public class Wire {
 		}
 		g.setColor(this.wireColor);
 		GeneralPath path = new GeneralPath();
-		path.moveTo((float) ((Point) this.pointList.get(0)).getX(), (float) ((Point) this.pointList.get(0)).getY());
+		path.moveTo((float) this.pointList.get(0).getX(), (float) this.pointList.get(0).getY());
 		for (int i = 1; i < this.pointList.size(); i++) {
-			path.lineTo((float) ((Point) this.pointList.get(i)).getX(), (float) ((Point) this.pointList.get(i)).getY());
+			path.lineTo((float) this.pointList.get(i).getX(), (float) this.pointList.get(i).getY());
 		}
 		path.lineTo((float) this.sketchPoint.getX(), (float) this.sketchPoint.getY());
 		g.draw(path);
@@ -229,7 +229,7 @@ public class Wire {
 
 		g.setStroke(new BasicStroke(6.0F));
 		for (int i = 0; i < this.nodeList.size(); i++) {
-			Point p = (Point) this.nodeList.get(i);
+			Point p = this.nodeList.get(i);
 			g.drawLine((int) p.getX(), (int) p.getY(), (int) p.getX(), (int) p.getY());
 		}
 
@@ -238,8 +238,8 @@ public class Wire {
 
 	public void removeWire() {
 		for (int i = 0; i < this.connectedWires.size(); i++) {
-			if (this.connectedWires.getSourceComponent() != null && ((Wire) this.connectedWires.get(i)).targetComponent != null) {
-				((Wire) this.connectedWires.get(i)).targetComponent.disconnectInput(this.connectedWires.getSourceComponent());
+			if (this.connectedWires.getSourceComponent() != null && this.connectedWires.get(i).targetComponent != null) {
+				this.connectedWires.get(i).targetComponent.disconnectInput(this.connectedWires.getSourceComponent());
 			}
 
 			this.workSpace.getWires().remove(this.connectedWires.get(i));

@@ -27,6 +27,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class TruthTableFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JBreadBoard jBreadBoard;
 	public static String defaultchip = "integratedCircuits.ttl.logic.Gen7400";
 	JPanel contentPane;
@@ -76,9 +80,9 @@ public class TruthTableFrame extends JFrame {
 		this.setSize(new Dimension(759, 553));
 		this.setTitle("Truth Table Editor");
 
-		JComboBox inPinBox = new JComboBox();
+		JComboBox<String> inPinBox = new JComboBox<String>();
 		inPinBox.addItem("0");
-		JComboBox outPinBox = new JComboBox();
+		JComboBox<String> outPinBox = new JComboBox<String>();
 		for (int i = 0; i < 16; i++) {
 			outPinBox.addItem(String.valueOf(i + 1));
 		}

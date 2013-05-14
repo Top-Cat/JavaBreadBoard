@@ -26,6 +26,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class StateTableFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	private static final int OUT_STATE_MAX = 16;
 	private static final int IN_MAX = 8;
@@ -45,7 +49,7 @@ public class StateTableFrame extends JFrame {
 	JLabel lblStarting3 = new JLabel();
 	JLabel lblStarting4 = new JLabel();
 	JLabel lblStarting5 = new JLabel();
-	JList lstStarting = new JList();
+	JList<String> lstStarting = new JList<String>();
 	JScrollPane scrStarting = new JScrollPane();
 	private int inPinNumber;
 	private int outPinNumber;
@@ -81,10 +85,10 @@ public class StateTableFrame extends JFrame {
 		this.setSize(new Dimension(759, 548));
 		this.setTitle("State Table Editor");
 
-		JComboBox inPinBox = new JComboBox();
+		JComboBox<String> inPinBox = new JComboBox<String>();
 		inPinBox.addItem("0");
-		JComboBox outPinBox = new JComboBox();
-		JComboBox stateBox = new JComboBox();
+		JComboBox<String> outPinBox = new JComboBox<String>();
+		JComboBox<String> stateBox = new JComboBox<String>();
 		for (int i = 0; i < 16; i++) {
 			if (i < 8) {
 				inPinBox.addItem(String.valueOf(i + 1));
@@ -101,7 +105,7 @@ public class StateTableFrame extends JFrame {
 
 		this.stateTable = new StateTable(this.inPinNumber, this.outPinNumber, this.stateNumber);
 
-		Object[] states = new Object[this.stateNumber];
+		String[] states = new String[this.stateNumber];
 		for (int i = 0; i < this.stateNumber; i++) {
 			states[i] = Integer.toString(i);
 		}

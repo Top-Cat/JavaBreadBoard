@@ -18,6 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ChipPropertiesPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel lblChipText = new JLabel();
 	JTextField txtChipText = new JTextField();
 	JLabel lblManufacturer = new JLabel();

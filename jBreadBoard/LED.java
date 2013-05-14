@@ -12,6 +12,10 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 public class LED extends JComponent implements Device, CircuitSelection {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int red = 0;
 	public static final int yellow = 1;
 	public static final int green = 2;

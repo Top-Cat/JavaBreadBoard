@@ -7,6 +7,11 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class TruthTable extends StateTable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public TruthTable(int inCount, int outCount) {
 		super(inCount, outCount, 0);
 	}
