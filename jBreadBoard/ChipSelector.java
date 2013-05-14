@@ -1,5 +1,6 @@
 package jBreadBoard;
 
+import integratedCircuits.IntegratedCircuit;
 import integratedCircuits.ttl.generic.InvalidStateException;
 import jBreadBoard.v1_00.ChipModel;
 import jBreadBoard.v1_10.LoadSave;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -157,17 +159,17 @@ public class ChipSelector extends JPanel {
 		this.directoryClasses.clear();
 		URL url;
 		switch (direction.ordinal()) {
-			case 1:
+			case 2:
 				url = ClassLoader.getSystemResource(this.currentDirectory);
 				break;
-			case 2:
+			case 0:
 				if (this.currentDirectory.equals(this.defaultDirectory)) {
 					url = ClassLoader.getSystemResource(this.currentDirectory);
 				} else {
 					url = ClassLoader.getSystemResource(this.currentDirectory.substring(0, this.currentDirectory.lastIndexOf(this.urlSeparatorChar)));
 				}
 				break;
-			case 3:
+			case 1:
 				url = ClassLoader.getSystemResource(this.currentDirectory + this.urlSeparatorChar + selectedDirectory);
 				break;
 			default:
@@ -180,17 +182,17 @@ public class ChipSelector extends JPanel {
 
 			if (directory.isDirectory()) {
 				switch (direction.ordinal()) {
-					case 1:
+					case 2:
 						this.currentDirectory = this.defaultDirectory;
 						break;
-					case 2:
+					case 0:
 						if (!this.currentDirectory.equals(this.defaultDirectory)) {
 							this.currentDirectory = this.currentDirectory.substring(0, this.currentDirectory.lastIndexOf(this.urlSeparatorChar));
 						} else {
 							this.currentDirectory = this.defaultDirectory;
 						}
 						break;
-					case 3:
+					case 1:
 						this.currentDirectory = this.currentDirectory + this.urlSeparatorChar + selectedDirectory;
 						break;
 					default:
@@ -245,20 +247,24 @@ public class ChipSelector extends JPanel {
 
 					for (int j = 0; j < fileNames.size(); j++) {
 						try {
-							Object o = Class.forName(fileNames.get(j)).newInstance();
-
-							if (c.isInstance(o)) {
-								String classKey = fileNames.get(i).toString().substring(fileNames.get(i).toString().lastIndexOf('.') + 1);
-								String objectKey = fileNames.get(j).toString().substring(fileNames.get(j).toString().lastIndexOf('.') + 1);
-
-								this.directoryClasses.get(classKey).addClass(o.getClass());
-								this.directoryClasses.get(objectKey).incReferencedCount();
+							Class<?> clazz = Class.forName(fileNames.get(j));
+							if (IntegratedCircuit.class.isAssignableFrom(clazz) && !Modifier.isAbstract(clazz.getModifiers())) {
+								Object o = Class.forName(fileNames.get(j)).newInstance();
+	
+								if (c.isInstance(o)) {
+									String classKey = fileNames.get(i).toString().substring(fileNames.get(i).toString().lastIndexOf('.') + 1);
+									String objectKey = fileNames.get(j).toString().substring(fileNames.get(j).toString().lastIndexOf('.') + 1);
+	
+									this.directoryClasses.get(classKey).addClass(o.getClass());
+									this.directoryClasses.get(objectKey).incReferencedCount();
+								}
 							}
-
 						} catch (InstantiationException e1) {
 							System.out.println("InstantiationException Error " + e1);
+							System.out.println(fileNames.get(j));
 						} catch (IllegalAccessException e1) {
 							System.out.println("IllegalAccessException Error " + e1);
+							System.out.println(fileNames.get(j));
 						}
 					}
 				} catch (ClassNotFoundException e1) {
