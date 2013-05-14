@@ -15,10 +15,3 @@ class HTMLViewer_cmdClose_mouseAdapter extends MouseAdapter {
 		this.adaptee.cmdClose_mouseClicked(e);
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.HTMLViewer_cmdClose_mouseAdapter
- * JD-Core Version: 0.6.2
- */

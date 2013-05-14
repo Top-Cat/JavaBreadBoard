@@ -6,10 +6,3 @@ public class Ram1024x8 extends Ram {
 		this.manufacturer = "Generic RAM 1024x8";
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.memory.ram.Ram1024x8 JD-Core
- * Version: 0.6.2
- */

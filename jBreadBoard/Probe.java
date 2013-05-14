@@ -251,9 +251,3 @@ public class Probe extends JComponent implements Device, CircuitSelection {
 		return new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.Probe JD-Core Version: 0.6.2
- */

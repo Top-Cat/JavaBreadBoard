@@ -268,9 +268,3 @@ public class Wire {
 		return returnValue;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.Wire JD-Core Version: 0.6.2
- */

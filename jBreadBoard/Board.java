@@ -219,9 +219,3 @@ public abstract class Board extends JComponent implements CircuitSelection {
 		}
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.Board JD-Core Version: 0.6.2
- */

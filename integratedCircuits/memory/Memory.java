@@ -155,10 +155,3 @@ public abstract class Memory extends IntegratedCircuit implements ChipModel, Dbl
 		this.frame.setVisible(true);
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.memory.Memory JD-Core Version:
- * 0.6.2
- */

@@ -815,10 +815,3 @@ public abstract class IntegratedCircuit implements ChipModel {
 	@Override
 	public void setPackage(int p) {}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.IntegratedCircuit JD-Core
- * Version: 0.6.2
- */

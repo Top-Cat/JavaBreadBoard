@@ -68,10 +68,3 @@ public class MemSpace {
 		return false;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.memory.MemSpace JD-Core Version:
- * 0.6.2
- */

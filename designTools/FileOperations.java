@@ -70,9 +70,3 @@ public class FileOperations {
 		return selectedFile;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.FileOperations JD-Core Version: 0.6.2
- */

@@ -85,9 +85,3 @@ public class SelectPane extends JPanel {
 		this.add(this.imagepanel, "North");
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.SelectPane JD-Core Version: 0.6.2
- */

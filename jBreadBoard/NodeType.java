@@ -43,9 +43,3 @@ public class NodeType {
 		return NodeType.conflicts(t1.getType(), t2.getType());
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.NodeType JD-Core Version: 0.6.2
- */

@@ -6,10 +6,3 @@ public class Rom512x8 extends Rom {
 		this.manufacturer = "Generic ROM 512x8";
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.memory.rom.Rom512x8 JD-Core
- * Version: 0.6.2
- */

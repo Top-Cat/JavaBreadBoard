@@ -94,9 +94,3 @@ public class ChipAccess {
 		this.chip.repaint();
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.ChipAccess JD-Core Version: 0.6.2
- */

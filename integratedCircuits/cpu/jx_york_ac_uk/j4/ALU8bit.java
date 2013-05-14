@@ -451,10 +451,3 @@ public class ALU8bit extends IntegratedCircuit {
 		}
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.cpu.jx_york_ac_uk.j4.ALU8bit
- * JD-Core Version: 0.6.2
- */

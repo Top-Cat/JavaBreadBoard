@@ -34,9 +34,3 @@ public abstract class Pin {
 		HIGH, LOW, HIGH_IMPEDANCE, NOT_CONNECTED, UNKNOWN;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.Pin JD-Core Version: 0.6.2
- */

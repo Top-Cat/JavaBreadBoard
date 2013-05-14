@@ -355,9 +355,3 @@ public class Circuit extends JLayeredPane {
 		this.select(b);
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.Circuit JD-Core Version: 0.6.2
- */

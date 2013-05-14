@@ -15,10 +15,3 @@ class StateTable_stateTable_mouseAdapter extends MouseAdapter {
 		this.adaptee.stateTable_mouseClicked(e);
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.StateTable_stateTable_mouseAdapter
- * JD-Core Version: 0.6.2
- */

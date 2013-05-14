@@ -124,10 +124,3 @@ public class ChipPropertiesPanel extends JPanel {
 		this.radNo.setSelected(true);
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.ChipPropertiesPanel JD-Core Version:
- * 0.6.2
- */

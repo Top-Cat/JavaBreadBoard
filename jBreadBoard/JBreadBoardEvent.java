@@ -28,9 +28,3 @@ class JBreadBoardEvent {
 		return initial;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.JBreadBoardEvent JD-Core Version: 0.6.2
- */

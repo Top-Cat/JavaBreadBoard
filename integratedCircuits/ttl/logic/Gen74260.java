@@ -75,10 +75,3 @@ public class Gen74260 extends IntegratedCircuit {
 		}
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: integratedCircuits.ttl.logic.Gen74260 JD-Core
- * Version: 0.6.2
- */

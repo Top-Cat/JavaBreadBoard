@@ -376,10 +376,3 @@ public class CircuitDiagramFrame extends JFrame {
 		}
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.CircuitDiagramFrame JD-Core Version:
- * 0.6.2
- */

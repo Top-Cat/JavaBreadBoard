@@ -331,9 +331,3 @@ public class Chip extends JComponent implements Device, CircuitSelection {
 		return this.loadSaveable;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.Chip JD-Core Version: 0.6.2
- */

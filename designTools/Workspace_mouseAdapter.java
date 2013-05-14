@@ -25,10 +25,3 @@ class Workspace_mouseAdapter extends MouseAdapter {
 		this.adaptee.workspace_mouseReleased(e);
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.Workspace_mouseAdapter JD-Core Version:
- * 0.6.2
- */

@@ -35,9 +35,3 @@ public abstract interface ChipModel {
 
 	public abstract void setPackage(int paramInt);
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.v1_00.ChipModel JD-Core Version: 0.6.2
- */

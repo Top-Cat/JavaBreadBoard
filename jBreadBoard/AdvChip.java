@@ -225,9 +225,3 @@ public class AdvChip {
 		return ypos + 168;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: jBreadBoard.AdvChip JD-Core Version: 0.6.2
- */

@@ -219,10 +219,3 @@ public class CircuitEditorMenu extends StandardMenu {
 		return this.menuBar;
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.CircuitEditorMenu JD-Core Version:
- * 0.6.2
- */

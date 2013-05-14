@@ -101,9 +101,3 @@ public class HTMLViewer extends JFrame {
 		}
 	}
 }
-
-/*
- * Location:
- * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
- * \classes\ Qualified Name: designTools.HTMLViewer JD-Core Version: 0.6.2
- */
