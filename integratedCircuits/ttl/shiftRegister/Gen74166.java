@@ -1,140 +1,132 @@
-/*     */ package integratedCircuits.ttl.shiftRegister;
-/*     */ 
-/*     */ import integratedCircuits.InputPin;
-/*     */ import integratedCircuits.IntegratedCircuit;
-/*     */ import integratedCircuits.InvalidPinException;
-/*     */ import integratedCircuits.OutputPin;
-/*     */ import integratedCircuits.Pin;
-/*     */ import integratedCircuits.Pin.PinState;
-/*     */ import integratedCircuits.PowerPin;
-/*     */ import java.io.File;
-/*     */ import java.io.PrintStream;
-/*     */ import java.util.List;
-/*     */ 
-/*     */ public class Gen74166 extends IntegratedCircuit
-/*     */ {
-/*  18 */   protected Pin.PinState a = Pin.PinState.LOW;
-/*  19 */   protected Pin.PinState b = Pin.PinState.LOW;
-/*  20 */   protected Pin.PinState c = Pin.PinState.LOW;
-/*  21 */   protected Pin.PinState d = Pin.PinState.LOW;
-/*  22 */   protected Pin.PinState e = Pin.PinState.LOW;
-/*  23 */   protected Pin.PinState f = Pin.PinState.LOW;
-/*  24 */   protected Pin.PinState g = Pin.PinState.LOW;
-/*     */ 
-/*     */   public Gen74166()
-/*     */   {
-/*  31 */     initialise();
-/*     */ 
-/*  33 */     this.pins.add(new OutputPin(13, "QH"));
-/*     */   }
-/*     */ 
-/*     */   public Gen74166(int tplh, int tphl)
-/*     */   {
-/*  38 */     initialise();
-/*     */ 
-/*  40 */     this.pins.add(new OutputPin(13, "QH", tplh, tphl));
-/*     */   }
-/*     */ 
-/*     */   private void initialise()
-/*     */   {
-/*  49 */     this.description = "Parallel-load 8-Bit Shift Register";
-/*  50 */     this.manufacturer = "Generic TTL gate";
-/*  51 */     this.diagram = ("images" + File.separator + "74166.gif");
-/*  52 */     this.wide = false;
-/*     */ 
-/*  54 */     this.pins.add(new InputPin(1, "SER"));
-/*  55 */     this.pins.add(new InputPin(2, "A"));
-/*  56 */     this.pins.add(new InputPin(3, "B"));
-/*  57 */     this.pins.add(new InputPin(4, "C"));
-/*  58 */     this.pins.add(new InputPin(5, "D"));
-/*  59 */     this.pins.add(new InputPin(6, "CLKINH"));
-/*  60 */     this.pins.add(new InputPin(7, "CLK"));
-/*  61 */     this.pins.add(new PowerPin(8, "GND"));
-/*  62 */     this.pins.add(new InputPin(9, "CLR"));
-/*  63 */     this.pins.add(new InputPin(10, "E"));
-/*  64 */     this.pins.add(new InputPin(11, "F"));
-/*  65 */     this.pins.add(new InputPin(12, "G"));
-/*  66 */     this.pins.add(new InputPin(14, "H"));
-/*  67 */     this.pins.add(new InputPin(15, "SH/nLD"));
-/*  68 */     this.pins.add(new PowerPin(16, "VCC"));
-/*     */   }
-/*     */ 
-/*     */   private void updateGate(String CLK, String CLR, String SHLD, String CLKINH, String SER, String A, String B, String C, String D, String E, String F, String G, String H, String QH)
-/*     */     throws InvalidPinException
-/*     */   {
-/*  75 */     if (isLow(CLR)) {
-/*  76 */       this.a = Pin.PinState.LOW;
-/*  77 */       this.b = Pin.PinState.LOW;
-/*  78 */       this.c = Pin.PinState.LOW;
-/*  79 */       this.d = Pin.PinState.LOW;
-/*  80 */       this.e = Pin.PinState.LOW;
-/*  81 */       this.f = Pin.PinState.LOW;
-/*  82 */       this.g = Pin.PinState.LOW;
-/*  83 */       setPin(QH, Pin.PinState.LOW);
-/*     */     }
-/*  86 */     else if (isLow(SHLD)) {
-/*  87 */       this.a = getPinState(A);
-/*  88 */       this.b = getPinState(B);
-/*  89 */       this.c = getPinState(C);
-/*  90 */       this.d = getPinState(D);
-/*  91 */       this.e = getPinState(E);
-/*  92 */       this.f = getPinState(F);
-/*  93 */       this.g = getPinState(G);
-/*     */ 
-/*  95 */       if (isHigh(H))
-/*  96 */         setPin(QH, Pin.PinState.HIGH);
-/*     */       else {
-/*  98 */         setPin(QH, Pin.PinState.LOW);
-/*     */       }
-/*     */     }
-/* 101 */     else if ((isRisingEdge(CLK)) && (isLow(CLKINH))) {
-/* 102 */       if (this.g.equals(Pin.PinState.HIGH))
-/* 103 */         setPin(QH, Pin.PinState.HIGH);
-/*     */       else {
-/* 105 */         setPin(QH, Pin.PinState.LOW);
-/*     */       }
-/* 107 */       this.g = this.f;
-/* 108 */       this.f = this.e;
-/* 109 */       this.e = this.d;
-/* 110 */       this.d = this.c;
-/* 111 */       this.c = this.b;
-/* 112 */       this.b = this.a;
-/* 113 */       this.a = getPinState(SER);
-/*     */     }
-/*     */   }
-/*     */ 
-/*     */   public void reset()
-/*     */   {
-/*     */     try
-/*     */     {
-/* 121 */       for (Pin pin : this.pins)
-/* 122 */         if (isPinDriven(pin.getPinName()))
-/* 123 */           setPin(pin.getPinName(), Pin.PinState.NOT_CONNECTED);
-/*     */     }
-/*     */     catch (InvalidPinException e1) {
-/* 126 */       System.out.println("OPPS: InvalidPinException");
-/*     */     }
-/*     */   }
-/*     */ 
-/*     */   public void simulate() {
-/*     */     try { if (isPowered()) {
-/* 132 */         updateGate("CLK", "CLR", "SH/nLD", "CLKINH", "SER", "A", "B", "C", "D", "E", "F", "G", "H", "QH");
-/*     */       }
-/*     */       else
-/*     */       {
-/* 136 */         for (Pin pin : this.pins)
-/* 137 */           if (isPinDriven(pin.getPinName()))
-/* 138 */             setPin(pin.getPinName(), Pin.PinState.NOT_CONNECTED);
-/*     */       }
-/*     */     }
-/*     */     catch (InvalidPinException e1)
-/*     */     {
-/* 143 */       System.out.println("OPPS: InvalidPinException");
-/*     */     }
-/*     */   }
-/*     */ }
+package integratedCircuits.ttl.shiftRegister;
 
-/* Location:           C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build\classes\
- * Qualified Name:     integratedCircuits.ttl.shiftRegister.Gen74166
- * JD-Core Version:    0.6.2
+import integratedCircuits.InputPin;
+import integratedCircuits.IntegratedCircuit;
+import integratedCircuits.InvalidPinException;
+import integratedCircuits.OutputPin;
+import integratedCircuits.Pin;
+import integratedCircuits.PowerPin;
+
+import java.io.File;
+
+public class Gen74166 extends IntegratedCircuit {
+	protected Pin.PinState a = Pin.PinState.LOW;
+	protected Pin.PinState b = Pin.PinState.LOW;
+	protected Pin.PinState c = Pin.PinState.LOW;
+	protected Pin.PinState d = Pin.PinState.LOW;
+	protected Pin.PinState e = Pin.PinState.LOW;
+	protected Pin.PinState f = Pin.PinState.LOW;
+	protected Pin.PinState g = Pin.PinState.LOW;
+
+	public Gen74166() {
+		this.initialise();
+
+		this.pins.add(new OutputPin(13, "QH"));
+	}
+
+	public Gen74166(int tplh, int tphl) {
+		this.initialise();
+
+		this.pins.add(new OutputPin(13, "QH", tplh, tphl));
+	}
+
+	private void initialise() {
+		this.description = "Parallel-load 8-Bit Shift Register";
+		this.manufacturer = "Generic TTL gate";
+		this.diagram = "images" + File.separator + "74166.gif";
+		this.wide = false;
+
+		this.pins.add(new InputPin(1, "SER"));
+		this.pins.add(new InputPin(2, "A"));
+		this.pins.add(new InputPin(3, "B"));
+		this.pins.add(new InputPin(4, "C"));
+		this.pins.add(new InputPin(5, "D"));
+		this.pins.add(new InputPin(6, "CLKINH"));
+		this.pins.add(new InputPin(7, "CLK"));
+		this.pins.add(new PowerPin(8, "GND"));
+		this.pins.add(new InputPin(9, "CLR"));
+		this.pins.add(new InputPin(10, "E"));
+		this.pins.add(new InputPin(11, "F"));
+		this.pins.add(new InputPin(12, "G"));
+		this.pins.add(new InputPin(14, "H"));
+		this.pins.add(new InputPin(15, "SH/nLD"));
+		this.pins.add(new PowerPin(16, "VCC"));
+	}
+
+	private void updateGate(String CLK, String CLR, String SHLD, String CLKINH, String SER, String A, String B, String C, String D, String E, String F, String G, String H, String QH) throws InvalidPinException {
+		if (this.isLow(CLR)) {
+			this.a = Pin.PinState.LOW;
+			this.b = Pin.PinState.LOW;
+			this.c = Pin.PinState.LOW;
+			this.d = Pin.PinState.LOW;
+			this.e = Pin.PinState.LOW;
+			this.f = Pin.PinState.LOW;
+			this.g = Pin.PinState.LOW;
+			this.setPin(QH, Pin.PinState.LOW);
+		} else if (this.isLow(SHLD)) {
+			this.a = this.getPinState(A);
+			this.b = this.getPinState(B);
+			this.c = this.getPinState(C);
+			this.d = this.getPinState(D);
+			this.e = this.getPinState(E);
+			this.f = this.getPinState(F);
+			this.g = this.getPinState(G);
+
+			if (this.isHigh(H)) {
+				this.setPin(QH, Pin.PinState.HIGH);
+			} else {
+				this.setPin(QH, Pin.PinState.LOW);
+			}
+		} else if (this.isRisingEdge(CLK) && this.isLow(CLKINH)) {
+			if (this.g.equals(Pin.PinState.HIGH)) {
+				this.setPin(QH, Pin.PinState.HIGH);
+			} else {
+				this.setPin(QH, Pin.PinState.LOW);
+			}
+			this.g = this.f;
+			this.f = this.e;
+			this.e = this.d;
+			this.d = this.c;
+			this.c = this.b;
+			this.b = this.a;
+			this.a = this.getPinState(SER);
+		}
+	}
+
+	@Override
+	public void reset() {
+		try {
+			for (Pin pin : this.pins) {
+				if (this.isPinDriven(pin.getPinName())) {
+					this.setPin(pin.getPinName(), Pin.PinState.NOT_CONNECTED);
+				}
+			}
+		} catch (InvalidPinException e1) {
+			System.out.println("OPPS: InvalidPinException");
+		}
+	}
+
+	@Override
+	public void simulate() {
+		try {
+			if (this.isPowered()) {
+				this.updateGate("CLK", "CLR", "SH/nLD", "CLKINH", "SER", "A", "B", "C", "D", "E", "F", "G", "H", "QH");
+			} else {
+				for (Pin pin : this.pins) {
+					if (this.isPinDriven(pin.getPinName())) {
+						this.setPin(pin.getPinName(), Pin.PinState.NOT_CONNECTED);
+					}
+				}
+			}
+		} catch (InvalidPinException e1) {
+			System.out.println("OPPS: InvalidPinException");
+		}
+	}
+}
+
+/*
+ * Location:
+ * C:\Users\Yellow\Downloads\JavaBreadBoard1_11\JavaBreadBoard1_11\build
+ * \classes\ Qualified Name: integratedCircuits.ttl.shiftRegister.Gen74166
+ * JD-Core Version: 0.6.2
  */
