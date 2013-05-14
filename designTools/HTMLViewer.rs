@@ -1,0 +1,4 @@
+designTools.HTMLViewer_cmdBack_mouseAdapter
+designTools.HTMLViewer_htmlPane_hyperlinkAdapter
+designTools.HTMLViewer_cmdClose_mouseAdapter
+designTools.HTMLViewer

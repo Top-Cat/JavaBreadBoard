@@ -1,0 +1,20 @@
+Circuit
+Board jBreadBoard.BreadBoard 0 0
+Device jBreadBoard.Chip integratedCircuits.ttl.flipFlop.Gen7474 0 0 236 72
+Device jBreadBoard.LED 268 128 0
+Device jBreadBoard.Chip integratedCircuits.oscillator.Clk10KHz 0 0 172 72
+Device jBreadBoard.LED 252 128 0
+Device jBreadBoard.LED 324 128 0
+Wire 255 0 0 236 48 236 16
+Wire 0 0 0 284 112 284 152
+Wire 255 0 0 172 16 172 48
+Wire 0 0 0 196 112 196 152
+Wire 255 255 0 276 104 244 104
+Wire 255 255 0 236 112 260 112
+Wire 255 255 0 236 104 220 104 220 16
+Wire 255 255 0 252 120 212 120 212 64 196 64
+Wire 255 255 0 244 64 268 64
+Wire 255 255 0 244 48 244 16
+Wire 255 255 0 252 56 284 56
+Wire 255 255 0 268 120 308 120 308 48 260 48
+Wire 255 255 0 324 120 324 40 276 40

@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Circuit Diagram Editor</title>
+</head>
+
+<body>
+
+<h1 align="center"><font face="VAG Round">Circuit Diagram Editor</font></h1>
+<p><font face="Arial">Chip circuits can be developed by adding circuit
+components to a workspace and wiring them together. This is done by the circuit
+diagram editor.</font></p>
+<p><font face="Arial">Logic components available in the circuit diagram editor
+are AND gates, OR gates, and inverters. The toolbox also includes ground and VCC
+connections for providing constant '0' and '1' values respectively and input and
+output pins which map to pins on the chip. These components can be added to the
+workspace by clicking the buttons in the toolbar or selecting the component from
+the Insert menu. Holding the mouse pointer over the items in the toolbar causes
+a tool-tip to appear which identifies the component. Having selected the
+component it is placed on the workspace by clicking where it should be placed. A
+ghost of the component follows the mouse pointer until the component is placed.
+If you have accidentally selected a component that you don't want to place,
+clicking the mouse pointer button on the left of the toolbar removes the
+component. If an input or output pin is selected an input dialog will request a
+label for the pin. This label is the label that will be used for the pin in the
+breadboard simulator. Labels can also be added to any other part of the circuit
+by clicking the 'A' button but this has no effect outside of the circuit diagram
+editor.</font></p>
+<p><font face="Arial">Once components have been placed on the workspace they can
+be moved, deleted or, in the case of labels and pins, renamed. Components are
+selected by clicking on them (while not in wiring mode). Once they have been
+selected they can be moved, deleted or renamed by selecting the relevelant
+option from the Edit menu. Components can also be moved by dragging them with
+the mouse. If components are moved or deleted then all wires to which they
+connect will be deleted.&nbsp;</font></p>
+<p><font face="Arial">To wire components together you need to be in wiring mode.
+Wiring mode is started by clicking on the wire button in the toolbox or
+selecting Enter Wiring Mode from the Wire menu. The wiring mechanism for the
+circuit diagram editor is the same as in the breadboard simulator. To start drawing
+a wire click on the start position on the workspace. Move the mouse from this
+point to draw out a wire. To place a bend in the wire click once and to
+terminate the wire double-click. If a connection has been successfully made to a
+component or another wire then a node will appear. To exit wiring mode click on
+the pointer button in the toolbar or select Exit Wiring Mode from the wire menu.
+The colour of the wire may be changed by selecting a colour from the wire menu. </font></p>
+<p><font face="Arial">The outputs of two components should never be connected
+unless the outputs are tri-state buffers. At present the circuit diagram editor
+does not support tri-state buffers, so checks are performed to ensure that
+drawing a wire would not directly connect outputs. If this occurs the wire is
+removed and an error message shown in the status bar.</font></p>
+<p><font face="Arial">If the circuit diagram editor is not in wiring mode wires
+can be selected by clicking on them. Once selected they may be deleted by
+clicking the delete key or selecting delete from the Edit menu. If the deleted
+wire is connected to others the the connected wires are also removed.</font></p>
+<p><font face="Arial">The properties panel at the bottom of the editor should be
+used for setting additional chip characteristics. For help on the components of
+the properties panel <a href="properties_panel.htm">click here.</a></font></p>
+<p><font face="Arial">Once the chip diagram has been completed the chip file is
+saved by clicking File -&gt; Create Chip File. Doing so brings up a save dialog
+box. Select the directory and filename and click Save. The file extension
+&quot;.chp&quot; will automatically be added. In order to create chip files
+loading and saving must have been enabled. <a href="../../loadsave.html">Click
+here for more information.</a></font></p>
+<p><font face="Arial">Once the file has been saved the option is given to close
+the editor. Remember that once the editor has been closed the chip cannot be
+re-loaded into the editor and any changes will need to be made manually to the
+chip file. Thus it is advisable to test the chip in the breadboard simulator
+before closing the table editor.</font></p>
+<p><font face="Arial"><a href="index.htm">Return to Chip Design Tools Main Help
+Page</a></font></p>
+
+</body>
+
+</html>

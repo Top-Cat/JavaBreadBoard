@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Chip File Format</title>
+</head>
+
+<body>
+
+<h1 align="center"><font face="VAG Round">Chip File Format</font></h1>
+<p class="MsoNormal"><font face="Arial">This page states the format required to
+represent chips for compatibility with the generic chip class. Text shown in </font><font face="Courier">courier</font><font face="Arial">
+font must appear as shown. Text in <i>italics</i> are comments. Text in <b>bold</b>
+identifies lines which must be present in the header or else the chip will not
+be simulated and an error will be generated. If the other lines are not included
+then a suitable default value is used.</font></p>
+<p class="MsoNormal"><o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">Chip
+Text=</span>&lt;Text to be placed on chip graphic in the breadboard
+simulator&gt;</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">Description=</span>&lt;Brief
+description of the chip&gt;</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">Manufacturer=</span>&lt;The
+chip manufacturer – if applicable&gt;</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">Diagram=</span>&lt;Location
+of gif image&gt; <i>The diagram must be present in the chips folder which, if
+the breadboard simulator is run as an applet, will be on the server, thus this
+option is of little use to the remote user. It has been kept, however, as it may
+be of use to users running the application locally or for future program
+extensions. A default chip diagram is presented if this field is not present.<o:p>
+</o:p>
+</i></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">Wide
+Chip=</span>&lt;True/False&gt; <i>True if the chip should be shown as being wide
+in the breadboard simulator<o:p>
+</o:p>
+</i></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">Clocked
+Chip=</span>&lt;True/False&gt;<i> True if chip is synchronous and requires a
+clock pin <o:p>
+</o:p>
+</i></p>
+<p class="MsoNormal"><b><span style="font-family:&quot;Courier New&quot;">Input
+Pins</span></b><span style="font-family:&quot;Courier New&quot;">=</span>&lt;In
+pin name 1&gt;;&lt;In pin name 2&gt;;&lt;In pin name 3&gt; <i>Any number of
+input pins can be given. This list should not include VCC or GND as these will
+be added by the generic chip class.<o:p>
+</o:p>
+</i></p>
+<p class="MsoNormal"><b><span style="font-family:&quot;Courier New&quot;">Output
+Pins</span></b><span style="font-family:&quot;Courier New&quot;">=</span>&lt;Out
+pin name 1&gt;;*&lt;Out pin name 2&gt; <i>Any number of output pins can be
+given. *<span style="mso-spacerun: yes">&nbsp; </span>is used to show that the
+pin is open-collector.</i></p>
+<p class="MsoNormal"><b><span style="font-family:&quot;Courier New&quot;">Number
+of States</span></b><span style="font-family:&quot;Courier New&quot;">=</span>&lt;Number&gt;
+<i>Integer number of states</i></p>
+<p class="MsoNormal"><b><span style="font-family:&quot;Courier New&quot;">Initial
+State</span></b><span style="font-family:&quot;Courier New&quot;">=</span>&lt;Number&gt;
+<i>Number of initial state</i></p>
+<p class="MsoNormal"><b>++++++++++</b> <i>the ‘+’s are used to indicate the
+end of the header and the start of the state table<o:p>
+</o:p>
+</i></p>
+<p class="MsoNormal"><i>The state table has a number of rows in the following
+format. The initial state and next state is represented as a positive integer. <o:p>
+</o:p>
+</i></p>
+<span style="font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-GB;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">&lt;In&gt;&lt;In&gt;&lt;In&gt;;&lt;Initial
+State&gt;;&lt;Out&gt;&lt;Out&gt;;&lt;Next State&gt;;&lt;Delay&gt;</span>
+<p><font face="Arial"><a href="index.htm">Return to Chip Design Tools Main Help
+Page</a></font></p>
+
+</body>
+
+</html>

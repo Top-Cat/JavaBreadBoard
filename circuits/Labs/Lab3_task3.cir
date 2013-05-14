@@ -1,0 +1,13 @@
+Circuit
+Board jBreadBoard.BreadBoard 0 0
+Device jBreadBoard.Chip integratedCircuits.ttl.generic.Logic 0 0 244 72 "C:/Java/JavaBreadBoard/build/classes/configFiles/FullAdder.chp"
+Device jBreadBoard.Dipswitch 172 16 3
+Device jBreadBoard.LED 316 128 0
+Device jBreadBoard.LED 324 128 0
+Wire 255 0 0 244 40 244 16
+Wire 0 0 0 268 152 268 128
+Wire 255 255 0 188 48 188 104 244 104
+Wire 255 255 0 180 48 180 112 252 112
+Wire 255 255 0 172 48 172 120 260 120
+Wire 255 255 0 268 64 316 64 316 96
+Wire 255 255 0 260 56 324 56 324 96

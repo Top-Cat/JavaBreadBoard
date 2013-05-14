@@ -1,0 +1,15 @@
+Circuit
+Board jBreadBoard.BreadBoard 0 0
+Device jBreadBoard.Chip integratedCircuits.ttl.logic.Gen7486 0 0 316 72
+Device jBreadBoard.Chip integratedCircuits.ttl.logic.Gen7408 0 0 220 72
+Device jBreadBoard.Dipswitch 172 16 2
+Device jBreadBoard.LED 236 128 0
+Device jBreadBoard.LED 332 128 0
+Wire 255 0 0 220 40 220 16
+Wire 255 0 0 316 40 316 16
+Wire 0 0 0 268 128 268 152
+Wire 0 0 0 364 128 364 152
+Wire 255 255 0 180 72 180 104 220 104
+Wire 255 255 0 172 72 172 112 228 112
+Wire 255 255 0 228 104 316 104
+Wire 255 255 0 220 120 324 120

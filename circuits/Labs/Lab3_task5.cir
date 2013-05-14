@@ -1,0 +1,65 @@
+Circuit
+Board jBreadBoard.BreadBoard 0 0
+Device jBreadBoard.Chip integratedCircuits.ttl.flipFlop.Gen7474 0 0 204 72
+Device jBreadBoard.Chip integratedCircuits.ttl.flipFlop.Gen7474 0 0 284 72
+Device jBreadBoard.Dipswitch 148 16 2
+Device jBreadBoard.LED 132 72 0
+Device jBreadBoard.LED 124 72 0
+Device jBreadBoard.LED 116 72 0
+Board jBreadBoard.BreadBoard 0 168
+Device jBreadBoard.Dipswitch 156 16 1
+Device jBreadBoard.Chip integratedCircuits.ttl.generic.Logic 0 0 244 72 "C:/Java/JavaBreadBoard/build/classes/configFiles/FullAdder.chp"
+Device jBreadBoard.Chip integratedCircuits.ttl.generic.Logic 0 0 316 72 "C:/Java/JavaBreadBoard/build/classes/configFiles/FullAdder.chp"
+Device jBreadBoard.Chip integratedCircuits.ttl.generic.Logic 0 0 172 72 "C:/Java/JavaBreadBoard/build/classes/configFiles/FullAdder.chp"
+Device jBreadBoard.Dipswitch 124 16 3
+Device jBreadBoard.LED 436 128 0
+Device jBreadBoard.LED 428 128 0
+Device jBreadBoard.LED 420 128 0
+Device jBreadBoard.LED 396 128 0
+Wire 255 0 0 204 40 204 16
+Wire 255 0 0 284 40 284 16
+Wire 0 0 0 252 128 252 152
+Wire 0 0 0 332 128 332 152
+Wire 255 255 0 156 72 156 104 204 104
+Wire 255 255 0 156 64 212 64
+Wire 255 255 0 156 56 292 56
+Wire 255 255 0 204 112 284 112
+Wire 255 255 0 228 104 308 104
+Wire 255 255 0 308 112 364 112 364 16
+Wire 255 255 0 316 40 316 16
+Wire 255 255 0 236 40 236 16
+Wire 255 255 0 420 272 420 56 300 56
+Wire 255 255 0 428 272 428 112 292 112
+Wire 255 255 0 436 272 436 104 212 104
+Wire 255 255 0 148 72 148 120 220 120
+Wire 255 255 0 148 64 228 64
+Wire 255 255 0 148 48 308 48
+Wire 255 255 0 308 64 372 64 372 120 300 120
+Wire 0 0 0 132 152 132 112
+Wire 0 0 0 132 104 124 104
+Wire 0 0 0 124 112 116 112
+Wire 255 255 0 108 216 108 64 132 64
+Wire 255 255 0 100 216 100 56 124 56
+Wire 255 255 0 92 216 92 48 116 48
+Wire 255 0 0 172 208 172 184
+Wire 255 0 0 244 208 244 184
+Wire 255 0 0 316 208 316 184
+Wire 0 0 0 196 296 196 320
+Wire 0 0 0 268 296 268 320
+Wire 0 0 0 340 296 340 320
+Wire 255 255 0 156 240 156 272 172 272
+Wire 255 255 0 140 240 140 280 180 280
+Wire 255 255 0 108 240 108 280 188 280
+Wire 255 255 0 196 232 436 232 436 264
+Wire 255 255 0 188 224 220 224 220 272 244 272
+Wire 255 255 0 132 240 132 288 252 288
+Wire 255 255 0 100 240 100 288 260 288
+Wire 255 255 0 268 224 428 224 428 264
+Wire 255 255 0 260 216 292 216 292 272 316 272
+Wire 255 255 0 124 240 124 296 324 296
+Wire 255 255 0 92 240 92 296 332 296
+Wire 255 255 0 340 216 420 216 420 264
+Wire 255 255 0 332 208 396 208 396 264
+Wire 255 255 0 236 128 108 128 108 208
+Wire 255 255 0 316 128 100 128 100 208
+Wire 255 255 0 324 64 356 64 356 128 92 128 92 208

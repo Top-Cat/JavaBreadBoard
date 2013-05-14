@@ -1,0 +1,20 @@
+Circuit
+Board jBreadBoard.BreadBoard 0 0
+Device jBreadBoard.Chip integratedCircuits.ttl.generic.StateMachine 0 0 252 72 "C:/Java/JavaBreadBoard/src/configFiles/Count4.chp"
+Device jBreadBoard.LED 316 128 0
+Device jBreadBoard.LED 324 128 0
+Device jBreadBoard.LED 332 128 0
+Device jBreadBoard.LED 340 128 0
+Device jBreadBoard.Chip integratedCircuits.oscillator.Clk10KHz 0 0 204 72
+Device jBreadBoard.Dipswitch 148 16 2
+Wire 255 0 0 252 64 252 16
+Wire 0 0 0 284 104 284 152
+Wire 255 255 0 316 120 316 64 284 64
+Wire 255 255 0 276 56 324 56 324 120
+Wire 255 255 0 332 120 332 48 268 48
+Wire 255 255 0 260 40 340 40 340 120
+Wire 0 0 0 228 104 228 152
+Wire 255 0 0 204 64 204 16
+Wire 255 255 0 228 64 244 64 244 104 252 104
+Wire 255 255 0 156 48 156 112 260 112
+Wire 255 255 0 268 120 148 120 148 48

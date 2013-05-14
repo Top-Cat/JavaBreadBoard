@@ -1,0 +1,12 @@
+Circuit
+Board jBreadBoard.BreadBoard 0 0
+Device jBreadBoard.Chip integratedCircuits.ttl.flipFlop.Gen7474 0 0 236 72
+Device jBreadBoard.Dipswitch 172 16 4
+Device jBreadBoard.LED 276 128 0
+Device jBreadBoard.LED 268 128 0
+Wire 255 0 0 236 48 236 16
+Wire 0 0 0 284 112 284 152
+Wire 255 255 0 196 64 196 104 236 104
+Wire 255 255 0 188 64 188 112 244 112
+Wire 255 255 0 180 64 180 120 252 120
+Wire 255 255 0 172 64 172 128 260 128

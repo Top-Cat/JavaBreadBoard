@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Truth Table Editor and State Table Editor</title>
+</head>
+
+<body>
+
+<h1 align="center"><font face="VAG Round">Truth Table Editor and State Table
+Editor</font></h1>
+<p><font face="Arial">Truth tables state for each input configuration the
+corresponding output configuration. State tables are similar to truth tables
+except there is the concept of an internal state. State tables give the output
+values and next state for each configuration of input values and initial state.</font></p>
+<p><font face="Arial">On invoking the truth table or state table editors a
+dialog box requests the number of input pins, output pins and in the case of the
+state table editor, the number of internal states, for the chip. Once these
+values have been selected press continue and the editor window will appear with
+all of the input-state combinations already input.</font></p>
+<p><font face="Arial">To change output values, simply click on the respective
+cell. Clicking on cells toggles the value, so a '0' changes to a '1' and a '1'
+to a '0'. To change the value for the next state click on the respective cell
+and a combo-box containing all valid next states will appear. Click on the
+correct state in the combo-box. Note that states are given in decimal (base 10)
+values.</font></p>
+<p><font face="Arial">When the chip is placed on the breadboard a panel on the
+left states the label for each pin. To change pin labels in the table editors so
+that the correct label is shown in the breadboard simulator double-click on the
+table column headers. This will bring up an input dialog box into which the pin
+label should be typed.</font></p>
+<p><font face="Arial">The state table editor has an additional panel on the
+right-hand side for giving the chip's initial state in which it will start on
+power-up. When circuits are developed in hardware components which have state
+normally start in a random state so it must be remembered that when any circuits
+are translated from these tools into hardware that additional circuitry may be
+needed to force the initial state. </font></p>
+<p><font face="Arial">The properties panel at the bottom of the editor should be
+used for setting additional chip characteristics. For help on the components of
+the properties panel <a href="properties_panel.htm">click here.</a></font></p>
+<p><font face="Arial">Once the chip table has been completed the chip file is
+saved by clicking File -&gt; Create Chip File. Doing so brings up a save dialog
+box. Select the directory and filename and click Save. The file extension
+&quot;.chp&quot; will automatically be added. In order to create chip files
+loading and saving must have been enabled. <a href="../../loadsave.html">Click
+here for more information.</a></font></p>
+<p><font face="Arial">Once the file has been saved the option is given to close
+the editor. Remember that once the editor has been closed the chip cannot be
+re-loaded into the editor and any changes will need to be made manually to the
+chip file. Thus it is advisable to test the chip in the breadboard simulator
+before closing the table editor.</font></p>
+<p><font face="Arial"><a href="index.htm">Return to Chip Design Tools Main Help
+Page</a></font></p>
+
+</body>
+
+</html>
