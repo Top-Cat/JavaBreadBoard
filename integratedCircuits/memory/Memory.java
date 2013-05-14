@@ -74,15 +74,17 @@ public abstract class Memory extends IntegratedCircuit implements ChipModel, Dbl
 			System.out.println("NULL File Name");
 		} else {
 			String newFilename = this.updateConfigFilePath(this.filename);
+			Scanner fileScanner = null;
+			Scanner lineScanner = null;
 			try {
 				System.out.println("Open File " + newFilename);
 				FileInputStream istream = new FileInputStream(newFilename);
-				Scanner fileScanner = new Scanner(istream);
+				fileScanner = new Scanner(istream);
 
 				while (fileScanner.hasNextLine()) {
 					String line = fileScanner.nextLine();
 
-					Scanner lineScanner = new Scanner(line);
+					lineScanner = new Scanner(line);
 					try {
 						if (lineScanner.hasNext(Pattern.compile("^[0123456789].*"))) {
 							lineScanner.useDelimiter(",");
@@ -98,11 +100,20 @@ public abstract class Memory extends IntegratedCircuit implements ChipModel, Dbl
 							}
 						}
 					} catch (NoSuchElementException e1) {
+					} finally {
+						lineScanner.close();
 					}
 				}
 			} catch (FileNotFoundException e1) {
 				System.out.print(e1);
 				throw new InvalidStateException("No File found exit");
+			} finally {
+				if (fileScanner != null) {
+					fileScanner.close();
+				}
+				if (lineScanner != null) {
+					lineScanner.close();
+				}
 			}
 		}
 	}

@@ -318,7 +318,7 @@ public class ChipSelector extends JPanel {
 
 					this.chipderivatives.removeAllItems();
 					this.chipderivatives.addItem(componentName);
-					Class[] classArray = classSet.getClasses();
+					Class<?>[] classArray = classSet.getClasses();
 					for (int i = 0; i < classArray.length; i++) {
 						if (!componentName.equals(classArray[i].getSimpleName())) {
 							this.chipderivatives.addItem(classArray[i].getSimpleName());
@@ -536,30 +536,26 @@ public class ChipSelector extends JPanel {
 	}
 
 	private class ClassRecord {
-		private HashSet<Class> implementsClass;
+		private HashSet<Class<?>> implementsClass;
 		private int referencedCount;
-		private Class baseClass;
+		private Class<?> baseClass;
 
-		ClassRecord(Class base) {
-			this.implementsClass = new HashSet<Class>();
+		ClassRecord(Class<?> base) {
+			this.implementsClass = new HashSet<Class<?>>();
 			this.referencedCount = 0;
 			this.baseClass = base;
 		}
 
-		public void addClass(Class c) {
+		public void addClass(Class<?> c) {
 			this.implementsClass.add(c);
 		}
 
-		public Class[] getClasses() {
+		public Class<?>[] getClasses() {
 			return this.implementsClass.toArray(new Class[this.implementsClass.size()]);
 		}
 
-		public Class getBaseClass() {
+		public Class<?> getBaseClass() {
 			return this.baseClass;
-		}
-
-		public int getSize() {
-			return this.implementsClass.size();
 		}
 
 		public void incReferencedCount() {

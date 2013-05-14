@@ -83,14 +83,16 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 
 	private void initialise() throws InvalidStateException {
 		String newFilename = this.updateConfigFilePath(this.chipFilename);
+		Scanner fileScanner = null;
+		Scanner lineScanner = null;
 		try {
 			FileInputStream istream = new FileInputStream(newFilename);
-			Scanner fileScanner = new Scanner(istream);
+			fileScanner = new Scanner(istream);
 
 			while (this.mode.booleanValue() && fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 
-				Scanner lineScanner = new Scanner(line);
+				lineScanner = new Scanner(line);
 				lineScanner.useDelimiter("=");
 
 				if (lineScanner.findInLine("Chip Text=") != null) {
@@ -146,6 +148,7 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 						}
 					}
 				}
+				lineScanner.close();
 			}
 			if (this.mode.booleanValue()) {
 				throw new InvalidStateException("No outputs detected exit");
@@ -161,7 +164,7 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 			while (!this.mode.booleanValue() && fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 
-				Scanner lineScanner = new Scanner(line);
+				lineScanner = new Scanner(line);
 				try {
 					if (lineScanner.hasNext(Pattern.compile("^[01].*"))) {
 						lineScanner.useDelimiter(";");
@@ -177,6 +180,8 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 					}
 
 				} catch (NoSuchElementException e1) {
+				} finally {
+					lineScanner.close();
 				}
 
 			}
@@ -184,6 +189,13 @@ public class Logic extends IntegratedCircuit implements LoadSave {
 		} catch (FileNotFoundException e1) {
 			System.out.print(e1);
 			throw new InvalidStateException("No File found exit");
+		} finally {
+			if (fileScanner != null) {
+				fileScanner.close();
+			}
+			if (lineScanner != null) {
+				lineScanner.close();
+			}
 		}
 
 		if (this.lookUpTableRows == 0) {

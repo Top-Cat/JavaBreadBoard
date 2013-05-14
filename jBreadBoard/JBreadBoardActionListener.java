@@ -140,7 +140,7 @@ public class JBreadBoardActionListener implements ActionListener {
 		} else if (command.startsWith("tool:")) {
 			String s = command.substring(5, command.lastIndexOf("."));
 			try {
-				Class SS = Class.forName("tools." + s);
+				Class<?> SS = Class.forName("tools." + s);
 				try {
 					Thread t = (Thread) SS.newInstance();
 					t.start();

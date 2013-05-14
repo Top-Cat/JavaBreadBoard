@@ -31,7 +31,6 @@ public class TruthTableFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JBreadBoard jBreadBoard;
 	public static String defaultchip = "integratedCircuits.ttl.logic.Gen7400";
 	JPanel contentPane;
 	private static final int OUT_MAX = 16;
@@ -83,10 +82,10 @@ public class TruthTableFrame extends JFrame {
 		JComboBox<String> inPinBox = new JComboBox<String>();
 		inPinBox.addItem("0");
 		JComboBox<String> outPinBox = new JComboBox<String>();
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < OUT_MAX; i++) {
 			outPinBox.addItem(String.valueOf(i + 1));
 		}
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < IN_MAX; i++) {
 			inPinBox.addItem(String.valueOf(i + 1));
 		}
 

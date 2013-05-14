@@ -89,8 +89,8 @@ public class StateTableFrame extends JFrame {
 		inPinBox.addItem("0");
 		JComboBox<String> outPinBox = new JComboBox<String>();
 		JComboBox<String> stateBox = new JComboBox<String>();
-		for (int i = 0; i < 16; i++) {
-			if (i < 8) {
+		for (int i = 0; i < OUT_STATE_MAX; i++) {
+			if (i < IN_MAX) {
 				inPinBox.addItem(String.valueOf(i + 1));
 			}
 			outPinBox.addItem(String.valueOf(i + 1));

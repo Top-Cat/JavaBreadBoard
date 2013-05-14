@@ -47,8 +47,8 @@ public class Workspace extends JPanel {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
-		for (int i = 0; i <= this.getWidth(); i += 10) {
-			for (int j = 0; j <= this.getHeight(); j += 10) {
+		for (int i = 0; i <= this.getWidth(); i += GRID_SIZE) {
+			for (int j = 0; j <= this.getHeight(); j += GRID_SIZE) {
 				if (i + j > 0) {
 					g2.drawLine(i, j, i + 1, j);
 				}
@@ -248,7 +248,7 @@ public class Workspace extends JPanel {
 	}
 
 	public static int getGridSize() {
-		return 10;
+		return GRID_SIZE;
 	}
 
 	public ArrayList<CircuitComponent> getOutputs() {

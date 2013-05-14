@@ -207,12 +207,12 @@ public class JBreadBoard extends JApplet {
 
 	public static boolean implementsInterface(ChipModel chipname, String inter) {
 		boolean result = false;
-		Class class_name = chipname.getClass();
+		Class<?> class_name = chipname.getClass();
 
 		while (!class_name.getSimpleName().equalsIgnoreCase("Object")) {
-			Class[] interfaces = class_name.getInterfaces();
+			Class<?>[] interfaces = class_name.getInterfaces();
 
-			for (Class interface1 : interfaces) {
+			for (Class<?> interface1 : interfaces) {
 				if (interface1.getName().equals(inter)) {
 					result = true;
 				}
@@ -225,7 +225,7 @@ public class JBreadBoard extends JApplet {
 
 	public static boolean implementsClass(ChipModel chipname, String className) {
 		boolean result = false;
-		Class class_name = chipname.getClass();
+		Class<?> class_name = chipname.getClass();
 
 		while (!class_name.getSimpleName().equalsIgnoreCase("Object")) {
 			if (class_name.getSimpleName().equalsIgnoreCase(className)) {
@@ -238,7 +238,7 @@ public class JBreadBoard extends JApplet {
 	}
 
 	public static ChipModel getChipModel(String s) {
-		Class chipModel = null;
+		Class<?> chipModel = null;
 		try {
 			chipModel = Class.forName(s);
 		} catch (ClassNotFoundException e) {
