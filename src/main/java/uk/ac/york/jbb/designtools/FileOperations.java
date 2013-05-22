@@ -42,8 +42,7 @@ public class FileOperations {
 	}
 
 	public static File getFileSelection(String extension, String DialogTitle) {
-		URL url = ClassLoader.getSystemResource("configFiles");
-		String urlName = url.getFile().substring(1);
+		String urlName = System.getProperty("user.dir");
 
 		File selectedFile = null;
 

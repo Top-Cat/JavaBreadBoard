@@ -751,24 +751,24 @@ public abstract class IntegratedCircuit implements ChipModel {
 
 	public void setPin(String output, Pin.PinState state) throws InvalidPinException {
 		this.getPin(output).setPinState(state);
-		switch (state.ordinal()) {
-			case 1:
+		switch (state) {
+			case HIGH:
 				this.chip.write(this.getPinOffset(output), "HIGH", ((OutputPin) this.getPin(output)).getPinDelayTplh());
 
 				break;
-			case 2:
+			case LOW:
 				this.chip.write(this.getPinOffset(output), "LOW", ((OutputPin) this.getPin(output)).getPinDelayTphl());
 
 				break;
-			case 3:
+			case HIGH_IMPEDANCE:
 				this.chip.write(this.getPinOffset(output), "NC", 0);
 
 				break;
-			case 4:
+			case NOT_CONNECTED:
 				this.chip.write(this.getPinOffset(output), "NC", 0);
 
 				break;
-			case 5:
+			case UNKNOWN:
 				break;
 		}
 	}
@@ -778,24 +778,24 @@ public abstract class IntegratedCircuit implements ChipModel {
 		int riseFallDelay = ((OutputPin) this.getPin(output)).getPinDelayTplh();
 		int timeDelay = riseFallDelay + delay;
 
-		switch (state.ordinal()) {
-			case 1:
+		switch (state) {
+			case HIGH:
 				this.chip.write(this.getPinOffset(output), "HIGH", timeDelay);
 
 				break;
-			case 2:
+			case LOW:
 				this.chip.write(this.getPinOffset(output), "LOW", timeDelay);
 
 				break;
-			case 3:
+			case HIGH_IMPEDANCE:
 				this.chip.write(this.getPinOffset(output), "NC", timeDelay);
 
 				break;
-			case 4:
+			case NOT_CONNECTED:
 				this.chip.write(this.getPinOffset(output), "NC", timeDelay);
 
 				break;
-			case 5:
+			case UNKNOWN:
 				break;
 		}
 	}

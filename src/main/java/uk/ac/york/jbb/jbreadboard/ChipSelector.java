@@ -153,18 +153,18 @@ public class ChipSelector extends JPanel {
 
 		this.directoryClasses.clear();
 		URL url;
-		switch (direction.ordinal()) {
-			case 2:
+		switch (direction) {
+			case CURRENT:
 				url = ClassLoader.getSystemResource(this.currentDirectory);
 				break;
-			case 0:
+			case UP:
 				if (this.currentDirectory.equals(this.defaultDirectory)) {
 					url = ClassLoader.getSystemResource(this.currentDirectory);
 				} else {
 					url = ClassLoader.getSystemResource(this.currentDirectory.substring(0, this.currentDirectory.lastIndexOf("/")));
 				}
 				break;
-			case 1:
+			case DOWN:
 				url = ClassLoader.getSystemResource(this.currentDirectory + "/" + selectedDirectory);
 				break;
 			default:
@@ -176,18 +176,18 @@ public class ChipSelector extends JPanel {
 			File directory = new File(fileName);
 
 			if (directory.isDirectory()) {
-				switch (direction.ordinal()) {
-					case 2:
+				switch (direction) {
+					case CURRENT:
 						this.currentDirectory = this.defaultDirectory;
 						break;
-					case 0:
+					case UP:
 						if (!this.currentDirectory.equals(this.defaultDirectory)) {
 							this.currentDirectory = this.currentDirectory.substring(0, this.currentDirectory.lastIndexOf("/"));
 						} else {
 							this.currentDirectory = this.defaultDirectory;
 						}
 						break;
-					case 1:
+					case DOWN:
 						this.currentDirectory = this.currentDirectory + "/" + selectedDirectory;
 						break;
 					default:
