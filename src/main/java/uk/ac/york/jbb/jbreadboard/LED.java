@@ -101,7 +101,7 @@ public class LED extends JComponent implements Device, CircuitSelection {
 					newb = origb;
 				}
 
-				newb.add(led);
+				newb.add((Component) led);
 				led.updateConnections();
 
 				origb.repaint();

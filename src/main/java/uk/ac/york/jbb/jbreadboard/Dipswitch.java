@@ -130,7 +130,7 @@ public class Dipswitch extends JComponent implements Device, CircuitSelection {
 					newb = origb;
 				}
 
-				newb.add(dip);
+				newb.add((Component) dip);
 				newb.repaint();
 				origb.repaint();
 			}
