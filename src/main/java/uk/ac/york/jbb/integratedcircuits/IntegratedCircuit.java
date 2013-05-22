@@ -677,16 +677,22 @@ public abstract class IntegratedCircuit implements ChipModel {
 	public String getPinType(int pinOffset) {
 		try {
 			if (this.isPinOffsetInput(pinOffset)) {
+				return "IN";
 			} else {
 				if (this.isPinOffsetClockOutput(pinOffset)) {
+					return "CLO";
 				} else {
 					if (this.isPinOffsetInputOutput(pinOffset)) {
+						return "IO";
 					} else {
 						if (this.isPinOffsetOpenCollector(pinOffset) || this.isPinOffsetTriState(pinOffset)) {
+							return "OCO";
 						} else {
 							if (this.isPinOffsetOutput(pinOffset)) {
+								return "OUT";
 							} else {
 								if (this.isPinOffsetPower(pinOffset)) {
+									return "VCC";
 								}
 							}
 						}
